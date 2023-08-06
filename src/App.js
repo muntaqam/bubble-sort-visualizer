@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import BubbleSortChart from './components/bubbleSortChart';
 import './App.css';
 
 function App() {
+  const data = [25, 30, 45, 60, 20, 65, 75, 100, 55, 1, 42, 90, 89, 77, 13, 10];
+
+  
+  useEffect(() => {
+    document.title = 'Algorithm Visualizer';
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Bubble Sort Visualizer</h1>
+      <BubbleSortChart data={data} />
     </div>
   );
 }
