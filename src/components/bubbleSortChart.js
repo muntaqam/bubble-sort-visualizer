@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 
 function BubbleSortChart({ data }) {
   const ref = useRef();
+  const padding = 20;
 
   const svgWidth = 900;
   const svgHeight = 900;
