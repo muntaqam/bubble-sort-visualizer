@@ -9,14 +9,11 @@ function BubbleSortChart({ data }) {
   const svgWidth = 900; // 500 * 1.8
   const svgHeight = 900; // 500 * 1.8
 
-
   const [isPlaying, setIsPlaying] = useState(false);
-
-  //const [originalData, setOriginalData] = useState(null);
-
   const [speed, setSpeed] = useState(1);
-  const [sortingDone, setSortingDone] = useState(false); 
-  let timer; 
+  const [sortingDone, setSortingDone] = useState(false);
+
+  const timer = useRef(); // Define timer reference
 
   const randomizeData = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -25,6 +22,7 @@ function BubbleSortChart({ data }) {
     }
     return array;
   };
+
 
   // useEffect(() => {
   //   setOriginalData(data.slice()); // Initialize originalData with unsorted data
@@ -137,7 +135,7 @@ function BubbleSortChart({ data }) {
       let sorted = false;
       let n = data.length;
 
-      timer = setInterval(() => {
+     timer.current = setInterval(() => { // Update timer reference
         if (isPlaying && !sorted) {
           sorted = true;
           for (let i = 0; i < n - 1; i++) {
@@ -160,7 +158,7 @@ function BubbleSortChart({ data }) {
     };
 
     if (!isPlaying) {
-      clearInterval(timer);
+      clearInterval(timer.current);
     } else {
       bubbleSort();
     }
@@ -177,7 +175,7 @@ function BubbleSortChart({ data }) {
     setSpeed(newSpeed);
   };
 
-    return (
+      return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div style={{ textAlign: 'center' }}>
         <svg ref={ref} width={svgWidth} height={svgHeight} style={{ marginLeft: '15%' }}></svg>
@@ -212,6 +210,5 @@ function BubbleSortChart({ data }) {
     </div>
   );
 }
-
 
 export default BubbleSortChart;
