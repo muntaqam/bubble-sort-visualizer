@@ -2,43 +2,27 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
 function BubbleSortChart({ data }) {
-  const ref = useRef(); //select svg element where chart is
+  const ref = useRef();
   const padding = 30;
 
-  // Adjust the dimensions by 40%
-  const svgWidth = 900; // 500 * 1.8
-  const svgHeight = 900; // 500 * 1.8
+  const svgWidth = 900;
+  const svgHeight = 900;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [sortingDone, setSortingDone] = useState(false);
 
-  const timer = useRef(); // Define timer reference
-
-  const randomizeData = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i + 1));
-      [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
-    }
-    return array;
-  };
-
-
-  // useEffect(() => {
-  //   setOriginalData(data.slice()); // Initialize originalData with unsorted data
-  // }, [data]);
+  const timer = useRef(null);
 
   useEffect(() => {
-    
     const svg = d3.select(ref.current).attr('width', svgWidth).attr('height', svgHeight);
 
     const barWidth = 35;
-    const barSpacing = 42; // 30 * 1.4
+    const barSpacing = 42;
     const xScale = d3.scaleLinear().domain([0, data.length]).range([0, data.length * barSpacing]);
 
     const yScale = d3.scaleLinear().domain([0, d3.max(data)]).range([0, svgHeight - padding]);
 
-    // Draw bars
     const bars = svg.selectAll('rect').data(data);
 
     bars.exit().remove();
@@ -51,7 +35,6 @@ function BubbleSortChart({ data }) {
       .attr('height', (d) => yScale(d))
       .attr('fill', 'steelblue');
 
-//draw text 
     const text = svg.selectAll('.bar-label').data(data);
 
     text.enter()
