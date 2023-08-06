@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 
 function BubbleSortChart({ data }) {
   const ref = useRef();
-  const padding = 30;
 
   const svgWidth = 900;
   const svgHeight = 900;
@@ -19,9 +18,10 @@ function BubbleSortChart({ data }) {
 
     const barWidth = 35;
     const barSpacing = 42;
-    const xScale = d3.scaleLinear().domain([0, data.length]).range([0, data.length * barSpacing]);
+   // const xScale = d3.scaleLinear().domain([0, data.length]).range([0, data.length * barSpacing]);
 
-    const yScale = d3.scaleLinear().domain([0, d3.max(data)]).range([0, svgHeight - padding]);
+    const yScale = d3.scaleLinear().domain([0, d3.max(data)]).range([0, svgHeight]);
+
 
     const bars = svg.selectAll('rect').data(data);
 
@@ -132,9 +132,9 @@ function BubbleSortChart({ data }) {
           }
           n--;
         } else if (!isPlaying) {
-          clearInterval(timer);
+          clearInterval(timer.current);
         } else if (sorted) {
-          clearInterval(timer);
+          clearInterval(timer.current);
           setSortingDone(true); // sorting is completed so reset random
         }
       }, 1000 / speed);
@@ -146,7 +146,7 @@ function BubbleSortChart({ data }) {
       bubbleSort();
     }
 
-    return () => clearInterval(timer);
+    return () => clearInterval(timer.current);
   }, [data, isPlaying, speed]);
 
   const handlePlayPause = () => {
