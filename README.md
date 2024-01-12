@@ -16,3 +16,6 @@
 - **Responsive Design**: Enjoy a seamless experience across various devices and screen sizes.
 
  ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDI4b3BhMjZtazNzYjFhOG5tYjI5YW5hcGtjZXdiNnl3eDR4emlheiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L5LGmjATPfGfZK58tD/giphy.gif)
+<p align="center">
+  <img src="https://media.giphy.com/media/L5LGmjATPfGfZK58tD/giphy.gif" />
+</p>
